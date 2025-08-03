@@ -1,38 +1,59 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZRORO Demo – AI Agent Mock</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZRORO AI Agent – Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    textarea {
+      width: 60%;
+      height: 100px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .response {
+      margin-top: 30px;
+      font-weight: bold;
+      color: #007acc;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-6">
-  <div class="max-w-2xl w-full bg-gray-800 p-8 rounded shadow-md">
-    <h1 class="text-3xl font-bold mb-4 text-center">ZRORO AI Agent – Demo</h1>
-    <p class="mb-6 text-center text-gray-400">Enter a prompt and let ZRORO show you what it's capable of. (Mock responses)</p>
-    <form id="zroro-form" class="mb-6">
-      <textarea id="user-input" class="w-full p-4 rounded bg-gray-700 border border-gray-600 text-white" rows="4" placeholder="e.g., Draft a privacy policy for a fintech app..."></textarea>
-      <button type="submit" class="mt-4 w-full bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-lg">Run ZRORO</button>
-    </form>
-    <div id="output" class="bg-gray-700 p-4 rounded text-sm whitespace-pre-line hidden"></div>
-  </div>
+<body>
+  <h1>ZRORO AI Agent – Demo</h1>
+  <p>Enter a prompt and let ZRORO show you what it's capable of. (Mock responses)</p>
+  
+  <textarea id="prompt" placeholder="Ask something..."></textarea><br>
+  <button onclick="runZroro()">Run ZRORO</button>
+
+  <div class="response" id="responseBox"></div>
+
   <script>
-    const form = document.getElementById('zroro-form');
-    const input = document.getElementById('user-input');
-    const output = document.getElementById('output');
-    const mockResponses = [
-      "Here's your privacy policy:\n\nWe at ZRORO respect your privacy...",
-      "Business idea: A subscription box for remote team bonding experiences.",
-      "Email draft:\n\nHi [Name],\nHope this finds you well. Just circling back on our previous conversation...",
-      "Code snippet:\n\n<html>\n  <head><title>Landing Page</title></head>\n  <body>Welcome to ZRORO</body>\n</html>"
-    ];
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const randomIndex = Math.floor(Math.random() * mockResponses.length);
-      output.textContent = mockResponses[randomIndex];
-      output.classList.remove('hidden');
-    });
+    function runZroro() {
+      const prompt = document.getElementById('prompt').value.toLowerCase();
+      const responseBox = document.getElementById('responseBox');
+      let response = "Sorry, I'm just a demo. Try asking something else!";
+      
+      if (prompt.includes("pm of uk")) {
+        response = "As of 2025, the Prime Minister of the UK is Rishi Sunak.";
+      } else if (prompt.includes("ceo of google")) {
+        response = "The CEO of Google is Sundar Pichai.";
+      }
+
+      responseBox.innerText = response;
+    }
   </script>
 </body>
 </html>
