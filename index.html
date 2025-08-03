@@ -1,124 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZRORO – AI Services</title>
+  <title>ZRORO AI Chat Demo</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #0e0e0e;
-      color: #fff;
-      line-height: 1.6;
-    }
-    header {
-      padding: 2rem;
-      text-align: center;
-      background: #111;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
-      background: #00bcd4;
-      color: #000;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 3rem 2rem;
-      max-width: 960px;
-      margin: auto;
-    }
-    .features, .pricing {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    .card {
-      background: #1a1a1a;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    }
-    .card h3 {
-      color: #00bcd4;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
+    .chat-box { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+    .message { margin-bottom: 10px; }
+    .user { font-weight: bold; color: #2a9d8f; }
+    .bot { font-weight: bold; color: #264653; }
+    input[type="text"] { width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 10px 20px; background: #2a9d8f; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #21867a; }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>ZRORO – AI Services for Smart Business</h1>
-    <p>Build smarter conversations with AI agents like never before.</p>
-    <a href="./demo" class="btn">🚀 Try Demo</a>
-  </header>
+<div class="chat-box">
+  <h2>ZRORO AI Chat Demo</h2>
+  <div id="chat"></div>
+  <input type="text" id="userInput" placeholder="Type your message..." />
+  <button onclick="sendMessage()">Send</button>
+</div>
 
-  <section>
-    <h2>⚙️ Key Features</h2>
-    <div class="features">
-      <div class="card">
-        <h3>🤖 AI Agents</h3>
-        <p>Custom AI agents that can handle queries 24/7, tailored for your industry.</p>
-      </div>
-      <div class="card">
-        <h3>🔌 Easy Integration</h3>
-        <p>Connect with your CRM, website, or WhatsApp via a single API key.</p>
-      </div>
-      <div class="card">
-        <h3>⚡ Lightning Fast</h3>
-        <p>Our system deploys in minutes with blazing-fast response times.</p>
-      </div>
-    </div>
-  </section>
+<script>
+  function sendMessage() {
+    const input = document.getElementById('userInput');
+    const userText = input.value.trim();
+    if (userText === '') return;
 
-  <section>
-    <h2>💸 Pricing</h2>
-    <div class="pricing">
-      <div class="card">
-        <h3>Free</h3>
-        <p>INR ₹0/month</p>
-        <p>Basic demo access</p>
-      </div>
-      <div class="card">
-        <h3>Plus</h3>
-        <p>INR ₹600/month</p>
-        <p>Live chat integration + analytics</p>
-      </div>
-      <div class="card">
-        <h3>Pro</h3>
-        <p>INR ₹1600/month</p>
-        <p>Custom agent + API + priority support</p>
-      </div>
-    </div>
-  </section>
+    const chat = document.getElementById('chat');
+    chat.innerHTML += `<div class="message user">You: ${userText}</div>`;
 
-  <section>
-    <h2>📬 Contact Us</h2>
-    <p>For partnerships or support, write to: <strong>support@zroro.com</strong></p>
-  </section>
+    // Mock AI logic
+    let botReply = "This is a demo response from ZRORO AI.";
+    const lowerText = userText.toLowerCase();
 
-  <footer>
-    © 2025 ZRORO. All rights reserved.
-  </footer>
+    if (lowerText.includes("pm of uk")) {
+      botReply = "The Prime Minister of the UK is Rishi Sunak.";
+    } else if (lowerText.includes("ceo of google")) {
+      botReply = "The CEO of Google is Sundar Pichai.";
+    }
+
+    chat.innerHTML += `<div class="message bot">ZRORO: ${botReply}</div>`;
+    input.value = "";
+    chat.scrollTop = chat.scrollHeight;
+  }
+</script>
 
 </body>
 </html>
