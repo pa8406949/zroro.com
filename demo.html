@@ -1,61 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZRORO AI Agent – Demo</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      padding: 1rem 2rem;
       text-align: center;
-      padding: 50px;
-      background-color: #f5f5f5;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00ffd1;
+      border-bottom: 1px solid #333;
     }
-    h1 {
-      color: #3a3a3a;
+
+    #chatbox {
+      flex: 1;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
     }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 20px;
-      width: 300px;
+
+    .message {
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 80%;
     }
-    .response-box {
-      margin-top: 30px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      background: #fff;
+
+    .user {
+      background-color: #2e2e2e;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .bot {
+      background-color: #252525;
+      border-left: 4px solid #00ffd1;
+      align-self: flex-start;
+    }
+
+    #input-area {
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      background: #1f1f1f;
+      border-top: 1px solid #333;
+    }
+
+    input {
       width: 60%;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+
+    button {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      background: #00ffd1;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .typing {
+      border-right: 2px solid #00ffd1;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      #input-area {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>ZRORO AI Agent – Demo</h1>
-  <p>Enter a prompt and let ZRORO show you what it's capable of. (Mock responses)</p>
-  
-  <input type="text" id="promptInput" placeholder="Ask me anything..." />
-  <br />
-  <button onclick="runZroro()">Run ZRORO</button>
+  <header>
+    ZRORO AI Agent – Demo
+  </header>
 
-  <div class="response-box" id="responseBox">
-    Awaiting your question...
+  <div id="chatbox">
+    <div class="message bot">Enter a prompt and let ZRORO show you what it's capable of. (Mock responses)</div>
+  </div>
+
+  <div id="input-area">
+    <input type="text" id="userInput" placeholder="Ask anything..." />
+    <button onclick="handleInput()">Run ZRORO</button>
   </div>
 
   <script>
-    function runZroro() {
-      const prompt = document.getElementById('promptInput').value.toLowerCase();
-      const responseBox = document.getElementById('responseBox');
-      
-      let response = "I'm just a demo! Real answers coming soon.";
+    const chatbox = document.getElementById('chatbox');
 
-      if (prompt.includes("pm of uk") || prompt.includes("prime minister of uk")) {
-        response = "Rishi Sunak is the current Prime Minister of the United Kingdom.";
-      } else if (prompt.includes("business idea")) {
-        response = "How about a subscription box for remote team bonding experiences?";
+    function handleInput() {
+      const input = document.getElementById('userInput');
+      const prompt = input.value.trim();
+      if (!prompt) return;
+
+      addMessage(prompt, 'user');
+      input.value = '';
+      setTimeout(() => {
+        mockReply(prompt);
+      }, 800);
+    }
+
+    function addMessage(text, type) {
+      const msg = document.createElement('div');
+      msg.className = 'message ' + type;
+      msg.textContent = text;
+      chatbox.appendChild(msg);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function mockReply(prompt) {
+      let reply = "ZRORO is thinking...";
+
+      if (prompt.toLowerCase().includes('pm of uk')) {
+        reply = "The Prime Minister of the UK is Rishi Sunak.";
+      } else if (prompt.toLowerCase().includes('idea')) {
+        reply = "How about an AI assistant that manages your WhatsApp business chats in real-time?";
+      } else {
+        reply = "ZRORO is still learning. Try asking something different!";
       }
 
-      responseBox.innerText = response;
+      typingEffect(reply);
+    }
+
+    function typingEffect(text) {
+      const msg = document.createElement('div');
+      msg.className = 'message bot typing';
+      chatbox.appendChild(msg);
+      let i = 0;
+      const interval = setInterval(() => {
+        msg.textContent = text.substring(0, i + 1);
+        i++;
+        if (i === text.length) {
+          msg.classList.remove("typing");
+          clearInterval(interval);
+        }
+      }, 40);
     }
   </script>
 </body>
