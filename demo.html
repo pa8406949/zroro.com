@@ -3,166 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZRORO AI Agent – Demo</title>
+  <title>ZRORO – AI Services</title>
   <style>
     body {
-      background-color: #121212;
-      color: #eee;
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      background: #0e0e0e;
+      color: #fff;
+      line-height: 1.6;
     }
-
     header {
-      background-color: #1f1f1f;
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #00ffd1;
-      border-bottom: 1px solid #333;
-    }
-
-    #chatbox {
-      flex: 1;
       padding: 2rem;
-      max-width: 700px;
+      text-align: center;
+      background: #111;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background: #00bcd4;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 3rem 2rem;
+      max-width: 960px;
       margin: auto;
     }
-
-    .message {
-      margin: 1rem 0;
-      padding: 1rem;
+    .features, .pricing {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+      background: #1a1a1a;
+      padding: 1.5rem;
       border-radius: 10px;
-      max-width: 80%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     }
-
-    .user {
-      background-color: #2e2e2e;
-      align-self: flex-end;
-      text-align: right;
+    .card h3 {
+      color: #00bcd4;
     }
-
-    .bot {
-      background-color: #252525;
-      border-left: 4px solid #00ffd1;
-      align-self: flex-start;
-    }
-
-    #input-area {
-      display: flex;
-      justify-content: center;
-      padding: 1rem;
-      background: #1f1f1f;
-      border-top: 1px solid #333;
-    }
-
-    input {
-      width: 60%;
-      padding: 0.75rem;
-      border-radius: 5px;
-      border: none;
-      font-size: 1rem;
-      margin-right: 0.5rem;
-    }
-
-    button {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      background: #00ffd1;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: #000;
-      font-weight: bold;
-    }
-
-    .typing {
-      border-right: 2px solid #00ffd1;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    @media (max-width: 600px) {
-      input {
-        width: 100%;
-        margin-bottom: 0.5rem;
-      }
-      #input-area {
-        flex-direction: column;
-        align-items: center;
-      }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #888;
     }
   </style>
 </head>
 <body>
+
   <header>
-    ZRORO AI Agent – Demo
+    <h1>ZRORO – AI Services for Smart Business</h1>
+    <p>Build smarter conversations with AI agents like never before.</p>
+    <a href="./demo" class="btn">🚀 Try Demo</a>
   </header>
 
-  <div id="chatbox">
-    <div class="message bot">Enter a prompt and let ZRORO show you what it's capable of. (Mock responses)</div>
-  </div>
+  <section>
+    <h2>⚙️ Key Features</h2>
+    <div class="features">
+      <div class="card">
+        <h3>🤖 AI Agents</h3>
+        <p>Custom AI agents that can handle queries 24/7, tailored for your industry.</p>
+      </div>
+      <div class="card">
+        <h3>🔌 Easy Integration</h3>
+        <p>Connect with your CRM, website, or WhatsApp via a single API key.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ Lightning Fast</h3>
+        <p>Our system deploys in minutes with blazing-fast response times.</p>
+      </div>
+    </div>
+  </section>
 
-  <div id="input-area">
-    <input type="text" id="userInput" placeholder="Ask anything..." />
-    <button onclick="handleInput()">Run ZRORO</button>
-  </div>
+  <section>
+    <h2>💸 Pricing</h2>
+    <div class="pricing">
+      <div class="card">
+        <h3>Free</h3>
+        <p>INR ₹0/month</p>
+        <p>Basic demo access</p>
+      </div>
+      <div class="card">
+        <h3>Plus</h3>
+        <p>INR ₹600/month</p>
+        <p>Live chat integration + analytics</p>
+      </div>
+      <div class="card">
+        <h3>Pro</h3>
+        <p>INR ₹1600/month</p>
+        <p>Custom agent + API + priority support</p>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    const chatbox = document.getElementById('chatbox');
+  <section>
+    <h2>📬 Contact Us</h2>
+    <p>For partnerships or support, write to: <strong>support@zroro.com</strong></p>
+  </section>
 
-    function handleInput() {
-      const input = document.getElementById('userInput');
-      const prompt = input.value.trim();
-      if (!prompt) return;
+  <footer>
+    © 2025 ZRORO. All rights reserved.
+  </footer>
 
-      addMessage(prompt, 'user');
-      input.value = '';
-      setTimeout(() => {
-        mockReply(prompt);
-      }, 800);
-    }
-
-    function addMessage(text, type) {
-      const msg = document.createElement('div');
-      msg.className = 'message ' + type;
-      msg.textContent = text;
-      chatbox.appendChild(msg);
-      chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    function mockReply(prompt) {
-      let reply = "ZRORO is thinking...";
-
-      if (prompt.toLowerCase().includes('pm of uk')) {
-        reply = "The Prime Minister of the UK is Rishi Sunak.";
-      } else if (prompt.toLowerCase().includes('idea')) {
-        reply = "How about an AI assistant that manages your WhatsApp business chats in real-time?";
-      } else {
-        reply = "ZRORO is still learning. Try asking something different!";
-      }
-
-      typingEffect(reply);
-    }
-
-    function typingEffect(text) {
-      const msg = document.createElement('div');
-      msg.className = 'message bot typing';
-      chatbox.appendChild(msg);
-      let i = 0;
-      const interval = setInterval(() => {
-        msg.textContent = text.substring(0, i + 1);
-        i++;
-        if (i === text.length) {
-          msg.classList.remove("typing");
-          clearInterval(interval);
-        }
-      }, 40);
-    }
-  </script>
 </body>
 </html>
